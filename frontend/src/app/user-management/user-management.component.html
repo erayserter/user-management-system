@@ -1,0 +1,57 @@
+<div class="user-management-container">
+  <h2>User Management</h2>
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Username</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Role</th>
+      <th *ngIf="isAdmin">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.id }}</td>
+      <td>
+        <input [(ngModel)]="user.username" [readonly]="!isAdmin" />
+      </td>
+      <td>
+        <input [(ngModel)]="user.firstName" [readonly]="!isAdmin" />
+      </td>
+      <td>
+        <input [(ngModel)]="user.lastName" [readonly]="!isAdmin" />
+      </td>
+      <td>
+        <input [(ngModel)]="user.role" [readonly]="!isAdmin" />
+      </td>
+      <td *ngIf="isAdmin">
+        <button (click)="updateUser(user)">Update</button>
+        <button (click)="deleteUser(user.id)">Delete</button>
+      </td>
+    </tr>
+    <tr *ngIf="isAdmin">
+      <td>New</td>
+      <td>
+        <input [(ngModel)]="newUser.username" placeholder="Username" />
+      </td>
+      <td>
+        <input [(ngModel)]="newUser.firstName" placeholder="First Name" />
+      </td>
+      <td>
+        <input [(ngModel)]="newUser.lastName" placeholder="Last Name" />
+      </td>
+      <td>
+        <input [(ngModel)]="newUser.role" placeholder="Role" />
+      </td>
+      <td>
+        <input [(ngModel)]="newUser.password" placeholder="Password" type="password" />
+      </td>
+      <td>
+        <button (click)="addUser()">Add</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
